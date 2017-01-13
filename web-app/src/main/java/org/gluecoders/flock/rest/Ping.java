@@ -13,7 +13,7 @@ public class Ping {
     @GET
     public Response ping() {
 
-       return Response.status(200).entity("Ping call").build();
+        return Response.status(200).entity("Ping call").build();
 
     }
 
