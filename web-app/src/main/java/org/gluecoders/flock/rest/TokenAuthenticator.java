@@ -1,5 +1,6 @@
 package org.gluecoders.flock.rest;
 
+import org.gluecoders.flock.Impl.TokenAuthenticatorImpl;
 import org.gluecoders.flock.model.TokenAuthenticatorModel;
 import org.springframework.stereotype.Component;
 
@@ -17,12 +18,24 @@ import javax.ws.rs.core.Response;
 public class TokenAuthenticator {
 
 
+    private TokenAuthenticatorImpl tokenImpl;
+
+    public TokenAuthenticator(){}
+
+    public TokenAuthenticator(TokenAuthenticatorImpl tokenImpl){
+        this.tokenImpl = tokenImpl;
+    }
+
     @POST
     @Path("/authentication")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response tokenAuthenticator(TokenAuthenticatorModel tokenAuthenticatorModel) {
 
-        // save the request to data base for further reference for same  app name, user Id and token
+        //tokenAuthenticatorModel.setName("RP");
+       // tokenAuthenticatorModel.setUserId("RP100");
+       // tokenAuthenticatorModel.setToken("ABCDEF");
+        System.out.println("Before");
+        tokenImpl.saveToken(tokenAuthenticatorModel);
         return Response.status(200).entity("Authentication call").build();
 
     }
