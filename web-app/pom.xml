@@ -14,6 +14,14 @@
 
     <dependencies>
 
+        <!-- Oauth-->
+
+        <dependency>
+            <groupId>com.github.scribejava</groupId>
+            <artifactId>scribejava-core</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+
         <!-- Jersey -->
         <dependency>
             <groupId>com.sun.jersey</groupId>

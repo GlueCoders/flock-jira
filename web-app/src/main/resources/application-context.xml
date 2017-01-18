@@ -13,7 +13,7 @@
     <context:component-scan base-package="org.gluecoders.flock" />
 
     <!--<context:property-placeholder location="classpath:resources/application.properties" />-->
-    <tx:annotation-driven transaction-manager="hibernateTransactionManager"/>
+   <!-- <tx:annotation-driven transaction-manager="hibernateTransactionManager"/>
 
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -52,6 +52,6 @@
     </bean>
     <bean id="TokenAuth" class="org.gluecoders.flock.rest.TokenAuthenticator">
         <constructor-arg index="0" name="tokenImpl" ref="tokenImpl"/>
-    </bean>
+    </bean>-->
 
 </beans>
