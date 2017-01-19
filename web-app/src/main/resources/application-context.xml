@@ -3,39 +3,59 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jd="http://www.springframework.org/schema/jdbc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/jdbc
+    http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
     <context:component-scan base-package="org.gluecoders.flock" />
 
     <!--<context:property-placeholder location="classpath:resources/application.properties" />-->
-   <!-- <tx:annotation-driven transaction-manager="hibernateTransactionManager"/>
+     <tx:annotation-driven transaction-manager="hibernateTransactionManager"/>
 
-    <bean id="dataSource"
-          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/flock" />
-        <property name="username" value="root" />
-        <property name="password" value="root" />
+     <!--
+     <bean id="dataSource1"
+           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+         <property name="driverClassName" value="org.h2.Driver" />
+         <property name="url" value="jdbc:h2:mem:flock" />
+         <property name="username" value="sa" />
+         <property name="password" value="" />
+     </bean>
+     -->
+
+    <jd:embedded-database id="flock" type="H2">
+        <jd:script location="classpath:flock-create.db" />
+    </jd:embedded-database>
+
+    <bean id="h2WebServer" class="org.h2.tools.Server" factory-method="createWebServer" init-method="start" destroy-method="stop">
+        <constructor-arg value="-web,-webAllowOthers,-webPort,8082"/>
     </bean>
 
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="flock" />
         <property name="annotatedClasses">
             <list>
-                <value>org.gluecoders.flock.model.TokenAuthenticatorModel</value>
+                <value>org.gluecoders.flock.models.FlockUser</value>
+                <value>org.gluecoders.flock.models.JiraCredentials</value>
+                <value>org.gluecoders.flock.models.JiraUserCredentials</value>
             </list>
         </property>
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.driverClassName">org.h2.Driver</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+                <prop key="hibernate.url">jdbc:h2:mem:flock;DB_CLOSE_ON_EXIT=FALSE</prop>
+                <prop key="hibernate.default_schema">FLOCK</prop>
+                <prop key="hibernate.username">sa</prop>
+                <prop key="hibernate.password"></prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
             </props>
         </property>
     </bean>
@@ -52,6 +72,6 @@
     </bean>
     <bean id="TokenAuth" class="org.gluecoders.flock.rest.TokenAuthenticator">
         <constructor-arg index="0" name="tokenImpl" ref="tokenImpl"/>
-    </bean>-->
+    </bean>
 
 </beans>

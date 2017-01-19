@@ -109,10 +109,18 @@
         </dependency>
 
         <!-- MySQL -->
+        <!--
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.10</version>
+        </dependency> -->
+
+        <!-- H2 -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.187</version>
         </dependency>
 
         <!-- Jersey + Spring -->
