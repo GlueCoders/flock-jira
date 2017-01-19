@@ -5,10 +5,11 @@ import com.github.scribejava.core.model.OAuth1RequestToken;
 import com.github.scribejava.core.services.HMACSha1SignatureService;
 import com.github.scribejava.core.services.RSASha1SignatureService;
 import com.github.scribejava.core.services.SignatureService;
+import com.sun.org.apache.xml.internal.security.utils.Base64;
 
 import java.security.KeyFactory;
 import java.security.spec.PKCS8EncodedKeySpec;
-import java.util.Base64;
+
 
 /**
  * Created by Anand_Rajneesh on 1/18/2017.
@@ -48,7 +49,7 @@ public class OAuthAPI extends DefaultApi10a {
     public SignatureService getSignatureService() {
         try {
             KeyFactory fac = KeyFactory.getInstance("RSA");
-            PKCS8EncodedKeySpec privKeySpec = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKey));
+            PKCS8EncodedKeySpec privKeySpec = new PKCS8EncodedKeySpec(Base64.decode(privateKey));
             return new RSASha1SignatureService(fac.generatePrivate(privKeySpec));
         }catch (Exception e) {
             e.printStackTrace();
