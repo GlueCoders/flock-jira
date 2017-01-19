@@ -18,8 +18,6 @@ public final class Database {
     private final Map<String, JiraUserCredentials> jiraUsersMappings = new ConcurrentHashMap<String, JiraUserCredentials>();
     private final Map<String, FlockUser> flockUserMappings = new ConcurrentHashMap<String, FlockUser>();
     private final Map<String, String> requestTokenMappings = new ConcurrentHashMap<String, String>();
-    public Database() {
-    }
 
     public JiraUserCredentials getJiraUserCredentials(String flockUser) {
         return jiraUsersMappings.get(flockUser);
@@ -51,5 +49,9 @@ public final class Database {
 
     public String getFlockUserFromRequestToken(String requestToken){
         return requestTokenMappings.get(requestToken);
+    }
+
+    public FlockUser getFlockUserFromJiraUsername(String jiraUsername){
+        return null;
     }
 }

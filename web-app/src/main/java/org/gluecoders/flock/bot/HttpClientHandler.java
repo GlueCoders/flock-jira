@@ -21,6 +21,8 @@ import java.util.List;
 @Component
 public class HttpClientHandler {
 
+    public static volatile String token = "b8f76fb0-48d9-416c-8834-08dbbb5662ec";
+
     String url = "https://api.flock.co/v1/chat.sendMessage";
 
     public void sendComment(String userId, String message) throws IOException {
@@ -31,7 +33,7 @@ public class HttpClientHandler {
         List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
         urlParameters.add(new BasicNameValuePair("to", "u:" + userId));
         urlParameters.add(new BasicNameValuePair("text", message));
-        urlParameters.add(new BasicNameValuePair("token", "b8f76fb0-48d9-416c-8834-08dbbb5662ec"));
+        urlParameters.add(new BasicNameValuePair("token", token));
 
         try {
             post.setEntity(new UrlEncodedFormEntity(urlParameters, HTTP.UTF_8));
@@ -51,7 +53,7 @@ public class HttpClientHandler {
         List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
         urlParameters.add(new BasicNameValuePair("to", "u:" + userId));
         urlParameters.add(new BasicNameValuePair("text", message));
-        urlParameters.add(new BasicNameValuePair("token", "632542db-1a23-4e06-8b39-01f8b0868d57"));
+        urlParameters.add(new BasicNameValuePair("token", token));
 
         try {
             post.setEntity(new UrlEncodedFormEntity(urlParameters, HTTP.UTF_8));
