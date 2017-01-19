@@ -10,7 +10,7 @@ public class Test {
     public static void main(String[] args) {
         HttpClientHandler httpClientHandler = new HttpClientHandler();
         try {
-            httpClientHandler.sendComment("asasss" , "hello");
+            httpClientHandler.sendComment("user id" , "hello");
         } catch (IOException e) {
             e.printStackTrace();
         }

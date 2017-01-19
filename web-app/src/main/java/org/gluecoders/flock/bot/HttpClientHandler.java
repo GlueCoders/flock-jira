@@ -31,7 +31,7 @@ public class HttpClientHandler {
         HttpPost post = new HttpPost(url);
 
         List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
-        urlParameters.add(new BasicNameValuePair("to", "u:" + userId));
+        urlParameters.add(new BasicNameValuePair("to", userId));
         urlParameters.add(new BasicNameValuePair("text", message));
         urlParameters.add(new BasicNameValuePair("token", token));
 
@@ -51,7 +51,7 @@ public class HttpClientHandler {
         HttpPost post = new HttpPost(url);
 
         List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
-        urlParameters.add(new BasicNameValuePair("to", "u:" + userId));
+        urlParameters.add(new BasicNameValuePair("to", userId));
         urlParameters.add(new BasicNameValuePair("text", message));
         urlParameters.add(new BasicNameValuePair("token", token));
 
