@@ -49,7 +49,9 @@ public final class Database {
     public JiraCredentials getJiraCredentials(String jiraUrl) {
         logger.info("getJiraCredentials "+jiraUrl);
         JiraCredentialDetails o = db.getJiraCredentials(jiraUrl);
+        if(o == null) {return null;}
         JiraCredentials x = new JiraCredentials(jiraUrl, "", o.getPrivateKey(), o.getConsumerKey(), o.getPublicKey());
+        x.setId(o.getId());
         logger.info("exit getJiraCredentials ");
         return x;
         //return jiraMappings.get(jiraUrl);
@@ -88,6 +90,7 @@ public final class Database {
         if(userCredentials.getId() !=0) {
             o1.setId(userCredentials.getId());
         }
+        o1.setJiraCredentials(o);
         o1.setFlockUsername(flockUser);
         o1.setOauthVerifier(userCredentials.getOauthVerifier());
         o1.setAccessToken(userCredentials.getAccessToken());

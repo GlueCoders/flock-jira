@@ -32,9 +32,9 @@
         <jd:script location="classpath:flock-create.db" />
     </jd:embedded-database>
 
-    <!--<bean id="h2WebServer" class="org.h2.tools.Server" factory-method="createWebServer" init-method="start" destroy-method="stop">
+    <bean id="h2WebServer" class="org.h2.tools.Server" factory-method="createWebServer" init-method="start" destroy-method="stop">
         <constructor-arg value="-web,-webAllowOthers,-webPort,8082"/>
-    </bean>-->
+    </bean>
 
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
@@ -50,7 +50,7 @@
             <props>
                 <prop key="hibernate.driverClassName">org.h2.Driver</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
-                <prop key="hibernate.url">jdbc:h2:file:D:/flockdb</prop>
+                <prop key="hibernate.url">jdbc:h2:mem:flockdb</prop>
                 <prop key="hibernate.default_schema">FLOCK</prop>
                 <prop key="hibernate.username">sa</prop>
                 <prop key="hibernate.password"></prop>

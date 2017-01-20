@@ -18,11 +18,11 @@ public class JiraCredentialDetails {
     private String baseUrl;
     @Column(name = "WEBHOOK_ID")
     private String webhookId;
-    @Column(name = "PRIVATE_KEY")
+    @Column(name = "PRIVATE_KEY", length = 4096)
     private String privateKey;
     @Column(name = "CONSUMER_KEY")
     private String consumerKey;
-    @Column(name = "PUBLIC _KEY")
+    @Column(name = "PUBLIC_KEY", length = 4096)
     private String publicKey;
     @OneToMany(mappedBy = "jiraCredentials")
     private List<JiraUserCredentialDetails> jiraUserCredentialsList;

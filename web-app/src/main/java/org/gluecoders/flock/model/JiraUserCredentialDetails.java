@@ -16,7 +16,7 @@ public class JiraUserCredentialDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private int id;
-    @Column(name = "FLOCK_USERNAME")
+    @Column(name = "FLOCKUSERNAME")
     private String flockUsername;
     @Column(name = "REQUEST_TOKEN")
     private String requestToken;
@@ -26,7 +26,7 @@ public class JiraUserCredentialDetails {
     private OAuth1AccessToken accessToken;
     @Column(name = "AUTH_VERIFIER")
     private String oauthVerifier;
-    @Column(name = "JIRA_USERNAME")
+    @Column(name = "JIRAUSERNAME")
     private String jiraUsername;
     @ManyToOne
     @JoinColumn(name = "JIRA_CREDENTIALS_FK")
