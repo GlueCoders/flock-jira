@@ -1,16 +1,39 @@
-package org.gluecoders.flock.models;
+package org.gluecoders.flock.model;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Anand_Rajneesh on 1/18/2017.
  */
-public class JiraCredentials {
+@Entity
+@Table(name = "JIRA_CREDENTIALS")
+public class JiraCredentialDetails {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
     private int id;
+    @Column(name = "BASE_URL")
     private String baseUrl;
+    @Column(name = "WEBHOOK_ID")
     private String webhookId;
+    @Column(name = "PRIVATE_KEY")
     private String privateKey;
+    @Column(name = "CONSUMER_KEY")
     private String consumerKey;
+    @Column(name = "PUBLIC _KEY")
     private String publicKey;
+    @OneToMany(mappedBy = "jiraCredentials")
+    private List<JiraUserCredentialDetails> jiraUserCredentialsList;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getBaseUrl() {
         return baseUrl;
@@ -44,23 +67,13 @@ public class JiraCredentials {
         this.consumerKey = consumerKey;
     }
 
-    public JiraCredentials(String baseUrl, String webhookId, String privateKey, String consumerKey, String publicKey) {
-        this.baseUrl = baseUrl;
-        this.webhookId = webhookId;
-        this.privateKey = privateKey;
-        this.consumerKey = consumerKey;
-        this.publicKey = publicKey;
+
+    public List<JiraUserCredentialDetails> getJiraUserCredentialsList() {
+        return jiraUserCredentialsList;
     }
 
-    @Override
-    public String toString() {
-        return "JiraCredentials{" +
-                "baseUrl='" + baseUrl + '\'' +
-                ", webhookId='" + webhookId + '\'' +
-                ", privateKey='" + privateKey + '\'' +
-                ", consumerKey='" + consumerKey + '\'' +
-                ", publicKey='" + publicKey + '\'' +
-                '}';
+    public void setJiraUserCredentialsList(List<JiraUserCredentialDetails> jiraUserCredentialsList) {
+        this.jiraUserCredentialsList = jiraUserCredentialsList;
     }
 
     public String getPublicKey() {
@@ -69,13 +82,5 @@ public class JiraCredentials {
 
     public void setPublicKey(String publicKey) {
         this.publicKey = publicKey;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }

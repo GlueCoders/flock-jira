@@ -2,6 +2,8 @@ package org.gluecoders.flock.rest;
 
 import org.codehaus.jettison.json.JSONObject;
 import org.gluecoders.flock.EventHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,12 +19,14 @@ import javax.ws.rs.core.Response;
 @Path("/events")
 public class Flock {
 
+    private final static Logger logger = LoggerFactory.getLogger(Flock.class);
+
     @Autowired
     private EventHandler eventHandler;
 
     @POST
     public Response listen(@HeaderParam("X-Flock-Event-Token") String token, JSONObject request){
-        System.out.println(request.toString());
+        logger.info("Event listener "+request.toString());
         try {
             String event = request.getString("name");
             if(event.equalsIgnoreCase("app.install")){
@@ -38,7 +42,7 @@ public class Flock {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
         }
         return Response.ok().build();
     }

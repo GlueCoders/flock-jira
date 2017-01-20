@@ -1,21 +1,29 @@
-package org.gluecoders.flock.models;
+package org.gluecoders.flock.model;
 
-import java.io.Serializable;
+import javax.persistence.*;
 
-/**
- * Created by Anand_Rajneesh on 1/18/2017.
- */
-public class FlockUser implements Serializable{
+@Entity
+@Table(name = "FLOCK_USERS")
+public class FlockUsers {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
     private int id;
+    @Column(name = "TOKEN")
     private String token;
+    @Column(name = "USERID")
     private String flockUserId;
+    @Column(name = "USERNAME")
     private String flockUsername;
 
-    public FlockUser(String token, String flockUserId, String flockUsername) {
-        this.token = token;
-        this.flockUserId = flockUserId;
-        this.flockUsername = flockUsername;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getToken() {
@@ -40,13 +48,5 @@ public class FlockUser implements Serializable{
 
     public void setFlockUsername(String flockUsername) {
         this.flockUsername = flockUsername;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }

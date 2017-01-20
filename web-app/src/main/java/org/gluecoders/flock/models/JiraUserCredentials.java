@@ -8,6 +8,7 @@ import com.github.scribejava.core.model.OAuth1RequestToken;
  */
 public class JiraUserCredentials {
 
+    private int id;
     private OAuth1RequestToken requestToken;
     private String authorizationUrl;
     private OAuth1AccessToken accessToken;
@@ -74,5 +75,13 @@ public class JiraUserCredentials {
                 ", jiraUsername='" + jiraUsername + '\'' +
                 ", jiraCredentials=" + jiraCredentials +
                 '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -50,7 +50,6 @@ public class EventHandler implements  Runnable{
                 logger.info("Event discarded: "+webHookEvent);
             }
 
-
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
@@ -59,8 +58,8 @@ public class EventHandler implements  Runnable{
     private void handleEvent(Event eventType) throws JSONException {
         JSONObject issue = jiraEvent.getJSONObject("issue");
         String ticketId = issue.getString("key");
-        String summary = issue.getString("summary");
-        String assignee = issue.getJSONObject("assignee").getString("name");
+        String summary = issue.getJSONObject("fields").getString("summary");
+        String assignee = issue.getJSONObject("fields").getJSONObject("assignee").getString("name");
         JiraWebhookEvent jiraWebhookEvent = new JiraWebhookEvent(assignee, ticketId, "", summary);
         logger.info(String.format("Event type %s for user %s, ticketid %s", eventType, assignee, ticketId));
         switch (eventType){

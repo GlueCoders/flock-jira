@@ -16,62 +16,63 @@
     <context:component-scan base-package="org.gluecoders.flock" />
 
     <!--<context:property-placeholder location="classpath:resources/application.properties" />-->
-     <tx:annotation-driven transaction-manager="hibernateTransactionManager"/>
+   <tx:annotation-driven/>
 
-     <!--
-     <bean id="dataSource1"
+
+    <!-- <bean id="dataSource1"
            class="org.springframework.jdbc.datasource.DriverManagerDataSource">
          <property name="driverClassName" value="org.h2.Driver" />
          <property name="url" value="jdbc:h2:mem:flock" />
          <property name="username" value="sa" />
          <property name="password" value="" />
-     </bean>
-     -->
+     </bean>-->
 
-    <jd:embedded-database id="flock" type="H2">
+
+   <jd:embedded-database id="flock12" type="H2">
         <jd:script location="classpath:flock-create.db" />
     </jd:embedded-database>
 
-    <bean id="h2WebServer" class="org.h2.tools.Server" factory-method="createWebServer" init-method="start" destroy-method="stop">
+    <!--<bean id="h2WebServer" class="org.h2.tools.Server" factory-method="createWebServer" init-method="start" destroy-method="stop">
         <constructor-arg value="-web,-webAllowOthers,-webPort,8082"/>
-    </bean>
+    </bean>-->
 
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-        <property name="dataSource" ref="flock" />
+        <property name="dataSource" ref="flock12" />
         <property name="annotatedClasses">
             <list>
-                <value>org.gluecoders.flock.models.FlockUser</value>
-                <value>org.gluecoders.flock.models.JiraCredentials</value>
-                <value>org.gluecoders.flock.models.JiraUserCredentials</value>
+                <value>org.gluecoders.flock.model.FlockUsers</value>
+                <value>org.gluecoders.flock.model.JiraCredentialDetails</value>
+                <value>org.gluecoders.flock.model.JiraUserCredentialDetails</value>
             </list>
         </property>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.driverClassName">org.h2.Driver</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
-                <prop key="hibernate.url">jdbc:h2:mem:flock;DB_CLOSE_ON_EXIT=FALSE</prop>
+                <prop key="hibernate.url">jdbc:h2:file:D:/flockdb</prop>
                 <prop key="hibernate.default_schema">FLOCK</prop>
                 <prop key="hibernate.username">sa</prop>
                 <prop key="hibernate.password"></prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.current_session_context_class">thread</prop>
             </props>
         </property>
     </bean>
 
-    <bean id="hibernateTransactionManager"
+   <bean id="hibernateTransactionManager"
           class="org.springframework.orm.hibernate3.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-    <bean id="tokenDao" class="org.gluecoders.flock.dao.TokenDaoImpl">
+  <!--  <bean id="tokenDao" class="org.gluecoders.flock.dao.TokenDaoImpl">
     </bean>
     <bean id="tokenImpl" class="org.gluecoders.flock.Impl.TokenAuthenticatorImpl">
         <constructor-arg index="0" name="tokenDao" ref="tokenDao"/>
     </bean>
     <bean id="TokenAuth" class="org.gluecoders.flock.rest.TokenAuthenticator">
         <constructor-arg index="0" name="tokenImpl" ref="tokenImpl"/>
-    </bean>
+    </bean>-->
 
 </beans>

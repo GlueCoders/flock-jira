@@ -25,9 +25,9 @@ public class RestAPI {
         JSONObject json = new JSONObject();
         json.put("body",comment);
         JSONObject visibility = new JSONObject();
-        visibility.put("type","role");
-        visibility.put("value","Administrators");
-        json.put("visibility", visibility);
+        /*visibility.put("type","role");
+        visibility.put("value","jira-developers");
+        json.put("visibility", visibility);*/
         request.setPayload(json.toString());
         request.addHeader("Content-type","application/json");
         return request;
