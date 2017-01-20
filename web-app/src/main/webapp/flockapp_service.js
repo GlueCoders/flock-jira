@@ -4,7 +4,7 @@ App.factory('FlockAppService', ['$http', '$q', function($http, $q){
 
 	return {
 			fetchUserId: function(token) {
-					return $http.get('http://localhost:8084/rest/eventtoken?token='+token)
+					return $http.get('/rest/config/eventtoken?token='+token)
 							.then(
 									function(response){
 										return response.data;
@@ -15,8 +15,8 @@ App.factory('FlockAppService', ['$http', '$q', function($http, $q){
 									}
 							);
 			},
-			fetchFlockJiraData: function(jsonData) {
-					return $http.post('http://localhost:8084/rest/config/jiraurl',jsonReqData)
+			fetchFlockJiraData: function(jsonReqData) {
+					return $http.post('/rest/config/jiraurl',jsonReqData)
 							.then(
 									function(response){
 										return response.data;
@@ -27,8 +27,8 @@ App.factory('FlockAppService', ['$http', '$q', function($http, $q){
 									}
 							);
 			},
-            fetchToken: function(jsonData) {
-					return $http.post('http://localhost:8084/rest/config/token',jsonReqData)
+            fetchToken: function(jsonReqData) {
+					return $http.post('/rest/config/token',jsonReqData)
 							.then(
 									function(response){
 										return response.data;

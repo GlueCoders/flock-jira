@@ -1,5 +1,5 @@
 body{
-   background-color: #e6e6e6;
+   background-color: white;
 }
 .paddingTop{
   padding-top: 7%;
@@ -24,6 +24,9 @@ input[type=text]:focus {
   margin-left:33%;
 }
 
+.marginLeft3{
+  margin-left:25%;
+}
 .marginLeft2{
   margin-left:45%;
 }
@@ -74,9 +77,11 @@ background-color: #4CAF50;
   margin-left:8%;
 }
 .textClass{
-font-size: 13px;
+font-size: 16px;
 color: #4CAF50;
 }
+
+
 
 .panel-heading .accordion-toggle:after {
     /* symbol for "opening" panels */

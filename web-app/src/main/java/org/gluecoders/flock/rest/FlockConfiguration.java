@@ -13,6 +13,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Collections;
 
 /**
  * Created by Anand_Rajneesh on 1/18/2017.
@@ -41,7 +42,7 @@ public class FlockConfiguration {
     public Response requestToken(JSONObject request) {
         try {
             String authUrl = onboard.onboardUser(request.getString("userId"), request.getString("jiraUrl"));
-            return Response.ok().entity(authUrl).type(MediaType.APPLICATION_JSON).build();
+            return Response.ok().entity(new JSONObject(Collections.singletonMap("url", authUrl))).type(MediaType.APPLICATION_JSON).build();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -24,19 +24,25 @@
 	  <div ng-show="showMain">
 	  <div class="col-md-6 paddingTop">
 	     <h2>Connect with JIRA via Flock</h2>
-	     <h5>Enter your official JIRA email address and click Ok to continue</h5>
+	     <h5>Enter your official JIRA url and click Ok to continue</h5>
 	  </div>
 	  <div class="col-md-4 marginLeft">
-	     <input type="text" placeholder="Enter your JIRA email" ng-model="jiraUrl">
+	     <input type="text" placeholder="Enter your JIRA url" ng-model="jiraUrl">
 	  </div>
 	  <div class="col-md-4">
 	     <button class="button button4" ng-click="ShowHide(jiraUrl)">Ok</button>
 	  </div>
 	  </div>
+
 	  <div class="textClass paddingTop" ng-show = "showSteps"> <h3>Thanks for providing your JIRA email. </h3></div>
-	  <div class="textClass marginLeft" ng-show = "showSteps"> <h4>Please do the following steps to complete the integration. </h4></div>
-	  
-	  <div class="textClass paddingTop" ng-show = "showSteps"> <h3>Congrats!! The integration is successfully completed</h3></div>
+	  <div class="textClass marginLeft" ng-show = "showSteps"> <h4>Please do the following steps to complete the integration. You required following keys in the steps.</h4></div>
+	   <div class="textClass marginLeft3" ng-show = "showKeys"> <b>1. HostName: </b>{{hostname}}</div>
+	    <div class="textClass marginLeft3" ng-show = "showKeys"> <b>2. Public Key: </b>{{publicKey}}</div>
+	   <div class="textClass marginLeft3" ng-show = "showKeys"> <b>3. Consumer Key: </b>{{consumerKey}}</div>
+	   <div class="textClass marginLeft3" ng-show = "showKeys"> <b>4. Webhook URL: </b>{{webhook}}</div>
+	   <div class="textClass marginLeft3" ng-show = "showKeys"> <b>5. CallBack URL Key: </b>{{callBackUrl}}</div>
+	   <div class="textClass marginLeft3" ng-show = "showKeys"> <b>6. Application Name: </b>{{applicationName}}</div>
+	  <div class="textClass marginLeft paddingTop " ng-show = "finalMsg"> <h3>Congrats!! The integration is successfully completed</h3></div>
 
   <div class="steps marginLeft1" ng-show = "showSteps"> 
   <div class="panel-group" id="accordion">
@@ -44,7 +50,7 @@
     <div class="panel-heading">
       <h4 class="panel-title">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-          Steps to configure Application link using 
+          Steps to configure Application Link(Using Public and Consumer Keys,CallBack URL,Application and Host Name).
         </a>
       </h4>
     </div>
@@ -52,21 +58,27 @@
       <div class="panel-body">
         <div class="components"> <label>Now perform the following steps in the JIRA interface</label> </div> 
 		<div class="components"> <label>Step 1</label> 
-		   <div class="description"> In JIRA, click on <strong>System</strong> under the <strong>JIRA Administration</strong> menu. <p><img src="images/step1.jpg"></p> </div>
+		   <div class="description"> In JIRA, click on <strong>Applications</strong> under the <strong>JIRA Administration</strong> menu. <p><img src="images/step1_x.PNG"></p> </div>
 		</div> 
 		<div class="components"> <label>Step 2</label> 
-		   <div class="description"> Select <strong>Webhooks</strong> under <strong>Advanced</strong> in the sidebar. <p><img src="images/step2.jpg"></p> </div> 
+		   <div class="description"> Click <strong>Application Links</strong> under <strong>Integrations</strong> in the sidebar. And provide Hostname which you want to link <p><img src="images/step2.PNG"></p> </div>
 		</div> 
 		<div class="components"> <label>Step 3</label> 
-		   <div class="description"> Click on the <strong>Create a Webhook</strong> button. <p><img src="images/step3.jpg"></p> </div> 
+		   <div class="description"> Click on the <strong>Continue</strong> button. <p><img src="images/step3.PNG"></p> </div>
 		</div> 
 		<div class="components"> <label>Step 4</label> 
-		   <div class="description"> Paste the <strong>Flock Webhook URL</strong> which you just generated. <p><img src="images/step4.jpg"></p> </div> 
+		   <div class="description"> After continuing provide<strong> Application Name</strong> as shown in below screenshot <p><img src="images/step4.PNG"></p> </div>
 		</div>
 		<div class="components"> <label>Step 5</label> 
-		   <div class="description"> Click the <strong>Create</strong> button at the bottom when you're done. <p><img src="images/step5.jpg"></p> </div> 
-	    </div> 
-		   <p>To report a problem with this app, <a href="mailto:support@flock.co">click here</a>. You can also check JIRA's documentation <a href="https://developer.atlassian.com/jiradev/jira-apis/webhooks#Webhooks-Knownissues" target="_blank">here</a>.</p> 
+		   <div class="description"> Now your application link with the provided<strong>Application Name</strong> successfully created.Now edit the same application as highlighted.  <p><img src="images/step5.PNG"></p> </div>
+	    </div>
+		  <div class="components"> <label>Step 6</label>
+			  <div class="description"> You need to configure your application under <strong>Incoming Authentication</strong> in the side bar.<p><img src="images/step6.PNG"></p> </div>
+		  </div>
+		  <div class="components"> <label>Step 7</label>
+			  <div class="description"> Provide <strong>Primary and Consumer Keys</strong> here and click on save button.<p><img src="images/step7.PNG"></p> </div>
+		  </div>
+		  <p>To report a problem with this app, <a href="mailto:support@flock.co">click here</a>. You can also check JIRA's documentation <a href="https://developer.atlassian.com/jiradev/jira-apis/webhooks#Webhooks-Knownissues" target="_blank">here</a>.</p>
       </div>
     </div>
   </div>
@@ -74,7 +86,7 @@
     <div class="panel-heading">
       <h4 class="panel-title">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-           Steps 2 for Token
+           Steps to configure Webhook(Using Webhook URL).
         </a>
       </h4>
     </div>
@@ -100,66 +112,7 @@
       </div>
     </div>
   </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-          Steps 3 for Token
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse">
-      <div class="panel-body">
-        <div class="components"> <label>Now perform the following steps in the JIRA interface</label> </div> 
-		<div class="components"> <label>Step 1</label> 
-		   <div class="description"> In JIRA, click on <strong>System</strong> under the <strong>JIRA Administration</strong> menu. <p><img src="images/step1.jpg"></p> </div>
-		</div> 
-		<div class="components"> <label>Step 2</label> 
-		   <div class="description"> Select <strong>Webhooks</strong> under <strong>Advanced</strong> in the sidebar. <p><img src="images/step1.jpg"></p> </div> 
-		</div> 
-		<div class="components"> <label>Step 3</label> 
-		   <div class="description"> Click on the <strong>Create a Webhook</strong> button. <p><img src="images/step1.jpg"></p> </div> 
-		</div> 
-		<div class="components"> <label>Step 4</label> 
-		   <div class="description"> Paste the <strong>Flock Webhook URL</strong> which you just generated. <p><img src="images/step1.jpg"></p> </div> 
-		</div>
-		<div class="components"> <label>Step 5</label> 
-		   <div class="description"> Click the <strong>Create</strong> button at the bottom when you're done. <p><img src="images/step1.jpg"></p> </div> 
-	    </div> 
-		   <p>To report a problem with this app, <a href="mailto:support@flock.co">click here</a>. You can also check JIRA's documentation <a href="https://developer.atlassian.com/jiradev/jira-apis/webhooks#Webhooks-Knownissues" target="_blank">here</a>.</p>                 
-      </div>
-    </div>
-	</div>
-	<div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-          Step 4
-        </a>
-      </h4>
-    </div>
-    <div id="collapseFour" class="panel-collapse collapse">
-      <div class="panel-body">
-        <div class="components"> <label>Now perform the following steps in the JIRA interface</label> </div> 
-		<div class="components"> <label>Step 1</label> 
-		   <div class="description"> In JIRA, click on <strong>System</strong> under the <strong>JIRA Administration</strong> menu. <p><img src="images/step1.jpg"></p> </div>
-		</div> 
-		<div class="components"> <label>Step 2</label> 
-		   <div class="description"> Select <strong>Webhooks</strong> under <strong>Advanced</strong> in the sidebar. <p><img src="images/step1.jpg"></p> </div> 
-		</div> 
-		<div class="components"> <label>Step 3</label> 
-		   <div class="description"> Click on the <strong>Create a Webhook</strong> button. <p><img src="images/step1.jpg"></p> </div> 
-		</div> 
-		<div class="components"> <label>Step 4</label> 
-		   <div class="description"> Paste the <strong>Flock Webhook URL</strong> which you just generated. <p><img src="images/step1.jpg"></p> </div> 
-		</div>
-		<div class="components"> <label>Step 5</label> 
-		   <div class="description"> Click the <strong>Create</strong> button at the bottom when you're done. <p><img src="images/step1.jpg"></p> </div> 
-	    </div> 
-		   <p>To report a problem with this app, <a href="mailto:support@flock.co">click here</a>. You can also check JIRA's documentation <a href="https://developer.atlassian.com/jiradev/jira-apis/webhooks#Webhooks-Knownissues" target="_blank">here</a>.</p>                 
-      </div>
-    </div>	
-  </div>
+
 </div>
   </div>	
    </div>	
