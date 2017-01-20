@@ -58,4 +58,18 @@ public class FlockConfiguration {
         }
         return Response.ok().build();
     }
+
+    @GET
+    @Path("/eventtoken")
+    public Response eventToken(@QueryParam("token") String token) {
+        try {
+            String jwtToken = onboard.generateJWT(token);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("userId" , jwtToken);
+            return Response.ok().entity(jsonObject).type(MediaType.APPLICATION_JSON).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Response.ok().build();
+    }
 }
