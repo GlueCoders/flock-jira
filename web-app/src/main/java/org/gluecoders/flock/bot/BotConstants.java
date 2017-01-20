@@ -8,7 +8,7 @@ public interface BotConstants {
     public static final String HOST = "api.flock.co";
     public static final int PORT =  443;
     public static final String HTTPS = "https";
-    public static final String PROXY = "10.152.110.10";
+    public static final String PROXY = "10.152.80.42";
     public static final int PROXY_PORT = 80;
     public static final String USERNAME = "itlinfosys\\anand_rajneesh";
     public static final String PASSWORD = "Infosys1612!";

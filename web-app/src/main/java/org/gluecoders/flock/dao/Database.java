@@ -40,7 +40,9 @@ public final class Database {
         x.setOauthVerifier(o.getOauthVerifier());
         x.setRequestToken(new OAuth1RequestToken(o.getRequestToken(), o.getRequsttokenSecret()));
         JiraCredentialDetails t = o.getJiraCredentials();
-        x.setJiraCredentials(new JiraCredentials(t.getBaseUrl(), "", t.getPrivateKey(), t.getConsumerKey(), t.getPublicKey()));
+        JiraCredentials e = new JiraCredentials(t.getBaseUrl(), "", t.getPrivateKey(), t.getConsumerKey(), t.getPublicKey());
+        e.setId(t.getId());
+        x.setJiraCredentials(e);
         logger.info("exit getJiraUserCredentials");
         return x;
         //return jiraUsersMappings.get(flockUser);

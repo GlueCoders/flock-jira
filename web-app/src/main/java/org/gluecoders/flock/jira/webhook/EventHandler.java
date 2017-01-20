@@ -69,8 +69,11 @@ public class EventHandler implements  Runnable{
                 break;
             case COMMENT_CREATED:
                 String comment = jiraEvent.getJSONObject("comment").getString("body");
+                String user = jiraEvent.getJSONObject("user").getString("name");
                 jiraWebhookEvent.setComment(comment);
-                bot.commentAdded(jiraWebhookEvent);
+                if(!user.equalsIgnoreCase(assignee)) {
+                    bot.commentAdded(jiraWebhookEvent);
+                }
                 break;
             default:
                 logger.error("No event type mapped for "+eventType);

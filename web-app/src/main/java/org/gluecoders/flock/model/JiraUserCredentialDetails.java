@@ -22,7 +22,7 @@ public class JiraUserCredentialDetails {
     private String requestToken;
     @Column(name = "REQUEST_TOKENSECRET")
     private String requsttokenSecret;
-    @Column(name = "ACCESS_TOKEN")
+    @Column(name = "ACCESS_TOKEN", length=4096)
     private OAuth1AccessToken accessToken;
     @Column(name = "AUTH_VERIFIER")
     private String oauthVerifier;

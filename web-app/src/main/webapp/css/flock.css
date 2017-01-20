@@ -1,0 +1,91 @@
+body{
+   background-color: #e6e6e6;
+}
+.paddingTop{
+  padding-top: 7%;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 5px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+input[type=text]:focus {
+    border: 3px solid #555;
+}
+
+.marginLeft{
+  margin-left:33%;
+}
+
+.marginLeft2{
+  margin-left:45%;
+}
+.button {
+background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.buttonOne {
+background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 12px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button4 {border-radius: 12px;}
+
+.steps {
+    border: 1px solid #e2e2e2;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 30px;
+	    clear: both;
+}
+.components {
+    font-size: 14px;
+    margin-bottom: 36px;
+}
+ .description {
+    font-size: 14px;
+    margin: 5px 0;
+}
+.marginLeft1{
+  margin-left:8%;
+}
+.textClass{
+font-size: 13px;
+color: #4CAF50;
+}
+
+.panel-heading .accordion-toggle:after {
+    /* symbol for "opening" panels */
+    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+    content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+    float: right;        /* adjust as needed */
+    color: grey;         /* adjust as needed */
+}
+.panel-heading .accordion-toggle.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+}s

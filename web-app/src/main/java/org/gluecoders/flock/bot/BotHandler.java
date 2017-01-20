@@ -20,15 +20,15 @@ public class BotHandler {
     HttpClientHandler httpClientHandler;
 
     public void sendComment(FlockUser flockUser, String comment , String ticketId) throws IOException {
-        String message = String.format("Hi %s you have a comment on ticketId %s and comment as follows , %s"                ,
-                flockUser.getFlockUsername() , ticketId , comment);
+        String message = String.format("Hi %s you have a comment on ticket %s \n, %s",
+                "" , ticketId , comment);
         logger.info("Message to sent - >" + message);
         httpClientHandler.test(flockUser.getFlockUserId() , message);
     }
 
     public void addAssignee(FlockUser flockUser , String ticketId , String summary) throws IOException {
-        String message = String.format("Hi %s you just got a ticket id %s assigned to you and summary as follows, %s"                ,
-                flockUser.getFlockUsername() , ticketId , summary);
+        String message = String.format("Hi %s you just got a ticket %s assigned to you \n, %s",
+                "" , ticketId , summary);
         logger.info("Message to sent - >" + message);
         httpClientHandler.test(flockUser.getFlockUserId() , message);
     }

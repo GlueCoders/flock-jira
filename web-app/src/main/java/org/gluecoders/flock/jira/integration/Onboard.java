@@ -72,6 +72,7 @@ public class Onboard {
             JiraUserCredentials userCredentials = db.getJiraUserCredentials(flockUserId);
             userCredentials.setOauthVerifier(oauthVerifier);
             oAuthDancer.getAccessToken(userCredentials.getJiraCredentials(), userCredentials);
+            userCredentials.setJiraUsername(restDancer.getUsername(flockUserId, userCredentials));
             db.saveJiraUserCredentials(flockUserId, userCredentials);
         } catch (Exception e) {
             throw e;

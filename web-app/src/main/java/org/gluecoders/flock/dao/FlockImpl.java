@@ -25,7 +25,7 @@ public class FlockImpl implements FlockDao {
     public void saveNewFlockUser(FlockUsers flockUser) {
         Session s = sessionFactory.getCurrentSession();
         Transaction t = s.beginTransaction();
-        s.save(flockUser);
+        s.saveOrUpdate(flockUser);
         t.commit();
 
     }
@@ -42,7 +42,7 @@ public class FlockImpl implements FlockDao {
     public void saveJiraCredentials(JiraCredentialDetails jiraCredentials) {
         Session s = sessionFactory.getCurrentSession();
         Transaction t = s.beginTransaction();
-        s.save(jiraCredentials);
+        s.saveOrUpdate(jiraCredentials);
         t.commit();
     }
     public void saveJiraUserCredentials(String flockUsername, JiraUserCredentialDetails jiraUserCredentials) {
@@ -51,14 +51,15 @@ public class FlockImpl implements FlockDao {
         if (jiraUserCredentialDetails != null) {*/
         Session s = sessionFactory.getCurrentSession();
         Transaction t = s.beginTransaction();
-        s.save(jiraUserCredentials);
+        s.update(jiraUserCredentials.getJiraCredentials());
+        s.saveOrUpdate(jiraUserCredentials);
         t.commit();
         // }
     }
     public JiraUserCredentialDetails getJiraUserCredentials(String flockUser) {
         Session s = sessionFactory.getCurrentSession();
         Transaction t = s.beginTransaction();
-        Criteria criteria = s.createCriteria(JiraUserCredentials.class);
+        Criteria criteria = s.createCriteria(JiraUserCredentialDetails.class);
         JiraUserCredentialDetails jiraUserCredentials = (JiraUserCredentialDetails) criteria.add(Restrictions.eq("flockUsername", flockUser)).uniqueResult();
         t.commit();
         return jiraUserCredentials;
